@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manage Jobs - MatchFlow</title>
+
+    <!-- Bootstrap 5 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <!-- Top bar -->
+        <div class="topbar d-flex justify-content-between align-items-center mb-4">
+            <div class="fw-semibold">MatchFlow</div>
+            <div class="d-flex align-items-center gap-3">
+                <span>William Anderson</span>
+                <div class="avatar">WA</div>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <!-- Sidebar -->
+            <div class="col-lg-2">
+                <div class="sidebar">
+                    <div class="logo" id="sidebarCompanyName">TechCorp</div>
+                    <a href="index.html"><i class="bi bi-grid"></i> Dashboard</a>
+                    <a class="active" href="manage-jobs.html"><i class="bi bi-briefcase"></i> Manage Jobs</a>
+                    <a href="#" class="bg-danger"><i class="bi bi-box-arrow-left"></i> Logout</a>
+                </div>
+            </div>
+
+            <!-- Main content -->
+            <div class="col-lg-10">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h4 class="fw-bold mb-0">Manage Jobs & Applicants</h4>
+                    <div class="d-flex gap-2">
+                        <select class="form-select form-select-sm" id="filterJob" style="width: 200px;">
+                            <option value="all">Todas las ofertas</option>
+                            <option value="frontend">Frontend Developer</option>
+                            <option value="product">Product Manager</option>
+                            <option value="data">Data Engineer</option>
+                        </select>
+                        <select class="form-select form-select-sm" id="filterStatus" style="width: 150px;">
+                            <option value="all">Todos los estados</option>
+                            <option value="pending">Pendiente</option>
+                            <option value="matched">Match</option>
+                            <option value="contacted">Contactado</option>
+                            <option value="rejected">Rechazado</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Stats Row -->
+                <div class="row g-3 mb-4">
+                    <div class="col-md-3">
+                        <div class="stat-card d-flex align-items-center gap-3">
+                            <div class="stat-icon bg-primary"><i class="bi bi-people"></i></div>
+                            <div>
+                                <div class="fw-bold">12</div>
+                                <small class="text-muted">Total Aplicantes</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card d-flex align-items-center gap-3">
+                            <div class="stat-icon bg-success"><i class="bi bi-check-circle"></i></div>
+                            <div>
+                                <div class="fw-bold">5</div>
+                                <small class="text-muted">Matches</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card d-flex align-items-center gap-3">
+                            <div class="stat-icon bg-info"><i class="bi bi-envelope"></i></div>
+                            <div>
+                                <div class="fw-bold">3</div>
+                                <small class="text-muted">Contactados</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card d-flex align-items-center gap-3">
+                            <div class="stat-icon bg-warning"><i class="bi bi-hourglass-split"></i></div>
+                            <div>
+                                <div class="fw-bold">4</div>
+                                <small class="text-muted">Pendientes</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Applicants Section -->
+                        <div class="card-soft">
+                            <h5 class="fw-semibold mb-3">Lista de Aplicantes</h5>
+                            <table class="table align-middle" id="applicantsTable">
+                                <thead class="text-muted">
+                                    <tr>
+                                        <th>Candidato</th>
+                                        <th>Puesto Aplicado</th>
+                                        <th>Fecha</th>
+                                        <th>Estado</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center gap-3">
+                                                <div class="avatar bg-success">SG</div>
+                                                <div>
+                                                    <div class="fw-semibold">Sofia Gomez</div>
+                                                    <small class="text-muted">sofia.gomez@email.com</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge bg-primary">Frontend Developer</span></td>
+                                        <td><small class="text-muted">24 Ene 2026</small></td>
+                                        <td><span class="badge-pending">Pendiente</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-soft" data-bs-toggle="modal" data-bs-target="#viewApplicantModal" onclick="viewApplicant('Emily Parker')">
+                                                <i class="bi bi-eye"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-soft-success" onclick="makeMatch('Emily Parker')">
+                                                <i class="bi bi-heart"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-soft-danger" onclick="rejectApplicant('Emily Parker')">
+                                                <i class="bi bi-x-lg"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal View Applicant -->
+    <div class="modal fade" id="viewApplicantModal" tabindex="-1" aria-labelledby="viewApplicantModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="viewApplicantModalLabel">
+                        <i class="bi bi-person me-2"></i>Perfil del Candidato
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4 text-center">
+                            <div class="avatar-large mx-auto mb-3" id="modalApplicantAvatar">JL</div>
+                            <h5 class="fw-bold" id="modalApplicantName">Jessica Lee</h5>
+                            <p class="text-muted" id="modalApplicantEmail">jessica.lee@email.com</p>
+                            <span class="badge bg-primary" id="modalApplicantPosition">Frontend Developer</span>
+                        </div>
+                        <div class="col-md-8">
+                            <h6 class="fw-semibold mb-2">Habilidades</h6>
+                            <div class="mb-4" id="modalSkills">
+                                <span class="skill-tag">React</span>
+                                <span class="skill-tag">TypeScript</span>
+                                <span class="skill-tag">CSS</span>
+                                <span class="skill-tag">JavaScript</span>
+                                <span class="skill-tag">Git</span>
+                            </div>
+
+                            <h6 class="fw-semibold mb-2">Experiencia</h6>
+                            <p class="text-muted" id="modalExperience">5 años de experiencia en desarrollo frontend con React y TypeScript. Ha trabajado en empresas como Google y Meta.</p>
+
+                            <h6 class="fw-semibold mb-2">Educación</h6>
+                            <p class="text-muted" id="modalEducation">Ingeniería en Sistemas - Universidad de Stanford (2019)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" onclick="contactApplicant(document.getElementById('modalApplicantName').textContent)">
+                        <i class="bi bi-envelope me-1"></i>Contactar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="manage-jobs.js"></script>
+</body>
+
+</html>

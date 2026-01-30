@@ -22,6 +22,9 @@
         <div class="topbar d-flex justify-content-between align-items-center mb-4">
             <div class="fw-semibold">MatchFlow</div>
             <div class="d-flex align-items-center gap-3">
+                <button class="btn btn-light btn-sm fw-semibold" data-bs-toggle="modal" data-bs-target="#addOfferModal">
+                    <i class="bi bi-plus-circle me-1"></i> Add Ofer
+                </button>
                 <span>William Anderson</span>
                 <div class="avatar">WA</div>
             </div>
@@ -31,10 +34,10 @@
             <!-- Sidebar -->
             <div class="col-lg-2">
                 <div class="sidebar">
-                    <div class="logo">TechCorp</div>
-                    <a class="active" href="#"><i class="bi bi-grid"></i> Dashboard</a>
-                    <a href="#"><i class="bi bi-briefcase"></i> Manage Jobs</a>
-                    <a href="#" class="bg-danger" ><i class="bi bi-box-arrow-left"></i> Logout</a>
+                    <div class="logo" id="sidebarCompanyName">TechCorp</div>
+                    <a class="active" href="index.html"><i class="bi bi-grid"></i> Dashboard</a>
+                    <a href="manage-jobs.html"><i class="bi bi-briefcase"></i> Manage Jobs</a>
+                    <a href="#" class="bg-danger"><i class="bi bi-box-arrow-left"></i> Logout</a>
                 </div>
             </div>
 
@@ -139,9 +142,17 @@
             <!-- Right side -->
             <div class="col-lg-3">
 
-                <div class="sidebar">
-                    <div class="logo">TechCorp</div>
-                    <a href="#"></i><i class="bi bi-pencil"></i> Edit</a>
+                <div class="sidebar company-info-sidebar">
+                    <div class="logo" id="companyNameDisplay">TechCorp</div>
+                    <div class="company-category mb-2">
+                        <span class="badge-category" id="companyCategoryDisplay">
+                            <i class="bi bi-tag me-1"></i>Tecnología
+                        </span>
+                    </div>
+                    <p class="company-description" id="companyDescriptionDisplay">
+                        TechCorp es una empresa líder en desarrollo de software y soluciones tecnológicas innovadoras.
+                    </p>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#editCompanyModal"><i class="bi bi-pencil"></i> Edit</a>
                 </div>
 
                 <div class="side-card m-3">
@@ -158,7 +169,103 @@
         </div>
     </div>
 
+    <!-- Modal Edit Company -->
+    <div class="modal fade" id="editCompanyModal" tabindex="-1" aria-labelledby="editCompanyModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="editCompanyModalLabel">
+                        <i class="bi bi-building me-2"></i>Editar Compañía
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editCompanyForm">
+                        <div class="mb-3">
+                            <label for="companyName" class="form-label fw-semibold">Nombre de la Compañía</label>
+                            <input type="text" class="form-control" id="companyName" placeholder="Ej: TechCorp" value="TechCorp" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="companyCategory" class="form-label fw-semibold">Categoría</label>
+                            <select class="form-select" id="companyCategory" required>
+                                <option value="" disabled>Selecciona una categoría</option>
+                                <option value="technology" selected>Tecnología</option>
+                                <option value="finance">Finanzas</option>
+                                <option value="healthcare">Salud</option>
+                                <option value="education">Educación</option>
+                                <option value="retail">Comercio</option>
+                                <option value="manufacturing">Manufactura</option>
+                                <option value="consulting">Consultoría</option>
+                                <option value="other">Otro</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="companyDescription" class="form-label fw-semibold">Descripción</label>
+                            <textarea class="form-control" id="companyDescription" rows="4" placeholder="Describe tu compañía..." required>TechCorp es una empresa líder en desarrollo de software y soluciones tecnológicas innovadoras.</textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="saveCompany()">
+                        <i class="bi bi-check-lg me-1"></i>Guardar Cambios
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Add Offer -->
+    <div class="modal fade" id="addOfferModal" tabindex="-1" aria-labelledby="addOfferModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="addOfferModalLabel">
+                        <i class="bi bi-plus-circle me-2"></i>Nueva Oferta
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addOfferForm">
+                        <div class="mb-3">
+                            <label for="offerName" class="form-label fw-semibold">Nombre</label>
+                            <input type="text" class="form-control" id="offerName" placeholder="Ej: Frontend Developer" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="offerDescription" class="form-label fw-semibold">Descripción</label>
+                            <textarea class="form-control" id="offerDescription" rows="3" placeholder="Describe la oferta de trabajo..." required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="offerRequirements" class="form-label fw-semibold">Requisitos</label>
+                            <textarea class="form-control" id="offerRequirements" rows="3" placeholder="Lista los requisitos del puesto..." required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="offerCategory" class="form-label fw-semibold">Categoría</label>
+                            <select class="form-select" id="offerCategory" required>
+                                <option value="" selected disabled>Selecciona una categoría</option>
+                                <option value="technology">Tecnología</option>
+                                <option value="design">Diseño</option>
+                                <option value="marketing">Marketing</option>
+                                <option value="sales">Ventas</option>
+                                <option value="hr">Recursos Humanos</option>
+                                <option value="finance">Finanzas</option>
+                                <option value="other">Otro</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="saveOffer()">
+                        <i class="bi bi-check-lg me-1"></i>Guardar Oferta
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="company.js"></script>
 </body>
 
 </html>

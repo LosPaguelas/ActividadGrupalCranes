@@ -1,0 +1,122 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #f4f2ff, #eef1ff);
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    background: linear-gradient(180deg, #6f6af8, #8b7cfb);
+    color: #fff;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.sidebar .logo {
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.sidebar a {
+    color: #eae9ff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.sidebar a.active,
+.sidebar a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+/* Top bar */
+.topbar {
+    background: linear-gradient(90deg, #6f6af8, #9b8cff);
+    padding: 15px ;
+    color: #fff;
+}
+
+/* Cards */
+.stat-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.stat-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+/* Table card */
+.card-soft {
+    background: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.badge-active {
+    background: #e6f9f0;
+    color: #1bbf83;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.badge-reserved {
+    background: #eef0ff;
+    color: #6f6af8;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.btn-soft {
+    background: #f3f4ff;
+    border: none;
+    color: #6f6af8;
+    border-radius: 10px;
+}
+
+.btn-soft-danger {
+    background: #ffecec;
+    color: #ff4d4f;
+    border-radius: 10px;
+    border: none;
+}
+
+/* Right column cards */
+.profile-card,
+.side-card {
+    background: #fff;
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #6f6af8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 600;
+}

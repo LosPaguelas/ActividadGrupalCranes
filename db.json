@@ -1,0 +1,39 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "role": "company",
+      "name": "Empresa A"
+    },
+    {
+      "id": 2,
+      "role": "company",
+      "name": "Empresa B"
+    },
+    {
+      "id": 10,
+      "role": "candidate",
+      "name": "Carlos",
+      "skills": ["JS", "React"],
+      "email": "carlos@mail.com",
+      "phone": "123456"
+    },
+    {
+      "id": 11,
+      "role": "candidate",
+      "name": "Ana",
+      "skills": ["Python", "Django"],
+      "email": "ana@mail.com",
+      "phone": "654321"
+    }
+  ],
+  "jobs": [
+    {
+      "id": 100,
+      "companyId": 1,
+      "title": "Frontend Developer",
+      "status": "open"
+    }
+  ],
+  "matches": []
+}
